@@ -1,0 +1,28 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "project": "tsconfig.json",
+    "tsconfigRootDir": "."
+  },
+  "extends": [
+    "airbnb-typescript",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking"
+	],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "rules": {
+    "linebreak-style": "off",
+    "no-plusplus": "off",
+    "no-alert": "error",
+    "max-len": [2, 125, 4, { "ignoreUrls": true }],
+    "react/prop-types": 0
+  }
+}
