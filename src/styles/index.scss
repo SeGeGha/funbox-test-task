@@ -1,4 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@100;700&display=swap');
+
 @import '../styles/variables.scss';
+
+@import '../styles/mixin.scss';
 
 * {
   margin: 0;
@@ -6,16 +10,21 @@
   font-family: inherit;
   border: none;
   outline: none;
+  line-height: 1em;
+  box-sizing: border-box;
 }
 
 html {
-  font-size: 100%;
+  font-size: 10px;
   line-height: 1.2em;
 }
 
 body {
   min-width: 320px;
-  box-sizing: border-box;
-  font-family: 'Caveat', 'Open Sans', sans-serif;
+  min-height: 100vh;
+  font-family: 'Exo 2', 'Open Sans', sans-serif;
+  background: url('../assets/img/Pattern.png');
   cursor: default;
+
+  @include flex(row, center, center);
 }

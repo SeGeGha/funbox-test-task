@@ -1,3 +1,21 @@
 @import '../styles/mixin.scss';
 
 @import '../styles/variables.scss';
+
+.cards-box {
+
+  @include flex(row, center, center, wrap);
+
+  .title {
+    width: 100%;
+    font-weight: 100;
+    color: #fff;
+    filter: drop-shadow(0px 1px 0.5px #000000);
+    font-size: 3.6rem;
+    text-align: center;
+  }
+
+  .card {
+    margin: 28px 40px 0;
+  }
+}
