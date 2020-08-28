@@ -6,27 +6,27 @@
   user-select: none;
   
   &__body {
-    clip-path: polygon(14% 0, 100% 0, 100% 100%, 0 100%, 0% 9%);
+    position: relative;
     padding: 15px 44px;
     font-family: "Trebuchet MS", "Lucida Grande", Tahoma, sans-serif;
     color: $card-text-color;
     background: $card-background-color url('../../assets/img/cat.png') 47% 183% no-repeat;
     border: 4px solid $default-card-border-color;
     border-radius: 12px;
-    position: relative;
     cursor: pointer;
+    clip-path: polygon(14% 0, 100% 0, 100% 100%, 0 100%, 0% 9%);
   
     @include size(320px, 480px);
 
     &::after {
-      content: '';
       position: absolute;
       top: 3.2%;
       left: -3.2%;
-      height: 4px;
       width: 61px;
+      height: 4px;
+      background-color: $default-card-border-color;
       transform: rotate(-44deg);
-      background-color: $default-card-border-color
+      content: ''
     }
   
     &__subtitle {
@@ -55,11 +55,9 @@
   
     &__comment {
       margin-top: 16px;
-      padding-left: 1px;
       font-size: 1.4rem;
       line-height: 1.15em;
-      letter-spacing: -0.4px;
-      font-weight: bold;
+      font-weight: 100;
     }
   
     &__weight {
@@ -76,57 +74,93 @@
 
       @include size(80px);
   
-      &--unit {
+      &__unit {
         font-size: 2.1rem;
       }
     }
   }
 
   &__footer {
+    margin-top: 13px;
     font-size: 1.3rem;
     line-height: 1.25em;
-    color: #ffffff;
+    letter-spacing: -0.3px;
     text-align: center;
+    color: #ffffff;
     filter: drop-shadow(0px 1px 0.5px #000000);
     font-weight: 700;
-    letter-spacing: -0.3px;
-    margin-top: 13px;
-  }
-}
 
-.card--selected {
-  .card {
-    &__body {
-      border-color: $selected-card-border-color;
+    &--colored {
+      color: $default-card-border-color;
 
-      &::after {
-        background-color: $selected-card-border-color;
+      &:hover {
+        color: $hover-card-border-color;
       }
+    }
 
-      &__weight {
-        background-color: $selected-card-border-color;
+    &__link {
+      color: inherit;
+      background: inherit;
+      border-bottom: 1px dashed $default-card-border-color;
+      cursor: pointer;
+      font-weight: inherit;
+
+      &:hover {
+        border-bottom-color: $hover-card-border-color;
       }
     }
   }
 }
 
-.card--disabled {
+.card__body:hover {
+  border-color: $hover-card-border-color;
+
+  .card__body {
+
+    &::after,
+    &__weight {
+      background-color: $hover-card-border-color;
+    }
+  }
+}
+
+.card--blured {
+
+  .card__body__subtitle {
+    color: $selected-card-border-color;
+  }
+}
+
+.card--selected,
+.card--selected:hover {
+
+  .card__body {
+    border-color: $selected-card-border-color;
+
+    &::after,
+    &__weight {
+      background-color: $selected-card-border-color;
+    }
+  }
+}
+
+.card--disabled,
+.card--disabled:hover {
+
   .card {
+
     &__body {
-      cursor: default;
-      border-color: $disabled-card-color;
       color: $disabled-card-color;
       background-image: url('../../assets/img/cat-opacity.png');
+      border-color: $disabled-card-color;
+      cursor: default;
 
       &__title,
       &__taste {
         color: $disabled-card-color;
       }
 
-      &__weight {
-        background-color: $disabled-card-color;
-      }
-
+      &__weight,
       &::after {
         background-color: $disabled-card-color;
       }
