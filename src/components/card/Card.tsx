@@ -15,21 +15,22 @@ const Card: React.FC<CardProps> = ({ info }) => {
     isSelected: false,
     isDisabled: !availability,
   });
-  const tabIndex: number = +id.slice(0, 1);
+  const tabIndex = +id.slice(0, 1);
 
   function clickHandler() {
     setCardState({
-      ...cardState,
       isBlured: false,
       isSelected: !cardState.isSelected,
+      isDisabled: cardState.isDisabled,
     });
   }
 
   function mouseLeaveHandler() {
     if (cardState.isSelected) {
       setCardState({
-        ...cardState,
         isBlured: true,
+        isSelected: cardState.isSelected,
+        isDisabled: cardState.isDisabled,
       });
     }
   }
@@ -51,7 +52,7 @@ const Card: React.FC<CardProps> = ({ info }) => {
       </span>
     </>
   );
-  const subtitleText = (cardState.isBlured) ? 'Котэ не одобряет?' : subtitle;
+  const subtitleText = (!cardState.isDisabled && cardState.isBlured) ? 'Котэ не одобряет?' : subtitle;
 
   if (cardState.isDisabled) {
     classList += ' card--disabled';
@@ -68,20 +69,31 @@ const Card: React.FC<CardProps> = ({ info }) => {
         className="card__body"
         onMouseLeave={() => mouseLeaveHandler()}
         onClick={() => clickHandler()}
-        onKeyDown={() => clickHandler()}
+        onKeyDown={(event) => {
+          if (event.key === 'Tab') {
+            clickHandler();
+          }
+        }}
         role="button"
         tabIndex={tabIndex}
       >
-        <h4 className="card__body__subtitle">{subtitleText}</h4>
-        <h2 className="card__body__title">{title}</h2>
-        <h3 className="card__body__taste">{taste}</h3>
-        <p className="card__body__comment">
-          {count}
-          <br />
-          {gift}
-          <br />
-          {comment}
-        </p>
+        <div className="card__body__indention">
+          <div className="card__body__indention__segment" />
+          <div className="card__body__indention__segment" />
+        </div>
+        <div className="card__body__main">
+          <h4 className="card__body__main__subtitle">{subtitleText}</h4>
+          <h2 className="card__body__main__title">{title}</h2>
+          <h3 className="card__body__main__taste">{taste}</h3>
+          <p className="card__body__main__comment">
+            {count}
+            <br />
+            {gift}
+            <br />
+            {comment}
+          </p>
+        </div>
+        <div className="card__body__image" />
         <div className="card__body__weight">
           {weight}
           <br />

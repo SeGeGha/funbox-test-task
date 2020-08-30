@@ -1,3 +1,13 @@
+$card-border-radius: 12px;
+
+$card-width: 320px;
+$card-height: 480px;
+
+$card-side-padding: 4.4rem;
+$card-vertical-padding: 1.5rem;
+
+$card-border-width: 4px;
+
 $default-card-border-color: #1698d9;
 $hover-card-border-color: #2ea8e6;
 $selected-card-border-color: #d91667;
@@ -9,3 +19,6 @@ $card-text-color: #666666;
 $card-title-color: #000;
 $disabled-card-title-color: #ffff66;
 
+$default-card-border: $card-border-width solid $default-card-border-color;
+$hover-card-border: $card-border-width solid $hover-card-border-color;
+$selected-card-border: $card-border-width solid $selected-card-border-color;

@@ -3,7 +3,7 @@
 @import '../styles/variables.scss';
 
 .cards-box {
-  padding: 30px 0;
+  padding: 3.0rem 0;
   overflow: hidden;
 
   @include flex(row, center, center, wrap);
@@ -27,8 +27,7 @@
   .cards-box {
 
     .card {
-      margin-right: 3.2rem;
-      margin-left: 3.2rem;
+      margin: 2.8rem 3.2rem 0;
     }
   }
 }

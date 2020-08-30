@@ -31,5 +31,16 @@ body {
 
 #root {
   width: 100%;
+  min-height: 100vh;
   background-image: linear-gradient(0deg, #000000 0%, rgba(0,0,0,0) 50%, #000000 100%);
+
+  @include flex(row, center, center);
+
+  // Fix bug with min-height && align-items: center in IE-11
+  &::after {
+    display: block;
+    min-height: inherit;
+    font-size: 0;
+    content: '';
+  }
 }
