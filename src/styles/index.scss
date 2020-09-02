@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@100;700&display=swap');
+
+@import '../styles/variables.scss';
+
+@import '../styles/mixin.scss';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  line-height: 1em;
+  font-family: inherit;
+  border: none;
+  outline: none;
+}
+
+html {
+  font-size: 10px;
+  line-height: 1.2em;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: 'Exo 2', 'Open Sans', sans-serif;
+  background: url('../assets/img/Pattern.png');
+  cursor: default;
+
+  @include flex(row, center, center);
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  background-image: linear-gradient(0deg, #000000 0%, rgba(0,0,0,0) 50%, #000000 100%);
+
+  @include flex(row, center, center);
+
+  // Fix bug with min-height && align-items: center in IE-11
+  &::after {
+    display: block;
+    min-height: inherit;
+    font-size: 0;
+    content: '';
+  }
+}

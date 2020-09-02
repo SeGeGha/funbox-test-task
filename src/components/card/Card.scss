@@ -1,0 +1,221 @@
+@import '../../styles/mixin.scss';
+
+@import '../../styles/variables.scss';
+
+@function background-gradient($color) {
+  @return -45deg, $card-background-color, $card-background-color 531.5px, $color 0,$color 535.5px, transparent 0
+}
+
+.card {
+  user-select: none;
+  width: $card-width;
+  
+  &__body {
+    position: relative;
+    min-width: $card-width;
+    height: $card-height;
+    font-family: "Trebuchet MS", "Lucida Grande", Tahoma, sans-serif;
+    color: $card-text-color;
+    background: linear-gradient(background-gradient($default-card-border-color));
+    border-radius: $card-border-radius;
+    cursor: pointer;
+
+    @include flex(row);
+
+    &__indention {
+      width: $card-side-padding;
+
+      &__segment {
+
+        &:first-child {
+          height: $card-side-padding;
+         }
+
+        &:last-child {
+          height: calc(100% - 4.4rem);
+          border-bottom: $default-card-border;
+          border-left: $default-card-border;
+          border-bottom-left-radius: $card-border-radius;
+        }
+      }
+    }
+
+    &__main {
+      z-index: 1;
+      width: calc(100% - 4.4rem);
+      padding: $card-vertical-padding $card-side-padding $card-vertical-padding 0.4rem;
+      overflow: hidden;
+      word-break: break-word;
+      border: $default-card-border;
+      border-left: none;
+      border-bottom-right-radius: $card-border-radius;
+      border-top-right-radius: $card-border-radius;
+
+      &__subtitle {
+        font-size: 1.6rem;
+        line-height: 1.5em;
+        font-weight: 100;
+
+        .card--blured & {
+          color: $selected-card-border-color;
+        }
+      }
+
+      &__title,
+      &__taste {
+        color: $card-title-color;
+        font-weight: 900;
+      }
+    
+      &__title {
+        font-size: 4.8rem;
+        line-height: 1.25em;
+      }
+    
+      &__taste {
+        margin-top: -0.2rem;
+        font-size: 2.4rem;
+        line-height: 1em;
+      }
+    
+      &__comment {
+        margin-top: 1.6rem;
+        font-size: 1.4rem;
+        line-height: 1.15em;
+        font-weight: 100;
+      }     
+    }
+
+    &__image {
+      position: absolute;
+      bottom: $card-border-width;
+      left: $card-border-width;
+      background: url('../../assets/img/cat.png') 48.5% -1.5% no-repeat;
+      border-radius: 7px;
+
+      @include size(calc(100% - 8px), 56.25%)
+    }
+
+    &__weight {
+      position: absolute;
+      right: 4.7%;
+      bottom: 3.4%;
+      padding: 2.1rem 0;
+      font-size: 4.2rem;
+      line-height: 0.55em;
+      text-align: center;
+      color: #ffffff;
+      background-color: $default-card-border-color;
+      border-radius: 50%;
+
+      @include size(80px);
+  
+      &__unit {
+        font-size: 2.1rem;
+      }
+
+      br {
+        font-size: 0;
+      }
+    } 
+  }
+
+  &__footer {
+    margin-top: 1.3rem;
+    font-size: 1.3rem;
+    line-height: 1.25em;
+    letter-spacing: -0.02em;
+    text-align: center;
+    color: #ffffff;
+    filter: drop-shadow(0px 1px 0.5px #000000);
+    font-weight: 700;
+
+    &--colored {
+      color: $default-card-border-color;
+
+      &:hover {
+        color: $hover-card-border-color;
+      }
+    }
+
+    &__link {
+      color: inherit;
+      background:rgba(0, 0, 0, 0);
+      border-bottom: 1px dashed $default-card-border-color;
+      cursor: pointer;
+      font-weight: inherit;
+
+      &:hover {
+        border-bottom-color: $hover-card-border-color;
+      }
+    }
+  }
+}
+
+.card__body:hover {
+  background: linear-gradient(background-gradient($hover-card-border-color));
+
+  .card__body {
+    
+    &__indention__segment:last-child,
+    &__main {
+      border-color: $hover-card-border-color;
+    }
+
+    &__weight {
+      background-color: $hover-card-border-color;
+    }
+  }
+}
+
+.card--selected,
+.card--selected:hover {
+
+  .card__body {
+    background: linear-gradient(background-gradient($selected-card-border-color));
+
+    &__indention__segment:last-child,
+    &__main {
+      border-color: $selected-card-border-color;
+    }
+
+    &__weight {
+      background-color: $selected-card-border-color;
+    }
+  }
+}
+
+.card--disabled,
+.card--disabled:hover {
+
+  .card {
+
+    &__body {
+      color: $disabled-card-color;
+      background: linear-gradient(background-gradient($disabled-card-color));
+      cursor: default;
+
+      &__indention__segment:last-child,
+      &__main {
+        border-color: $disabled-card-color;
+      }
+
+      &__main__title,
+      &__main__taste {
+        color: $disabled-card-color;
+      }
+
+      &__image {
+        opacity: 0.5;
+      }
+
+      &__weight {
+        background-color: $disabled-card-color;
+      }
+    }
+
+    &__footer {
+      color: $disabled-card-title-color;
+    }
+  }
+}
